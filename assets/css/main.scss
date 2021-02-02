@@ -1,29 +1,57 @@
-@import "foundation.min.css";
-@import "slick.css";
+@import "foundation.min.css", "slick.css", "all.min.css", "animate.min.css";
 
-@font-face {
-    font-family: 'Open Sans';
-    src: url('../fonts/OpenSans-regular.ttf');
-}
+@import url(https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,300&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Work+Sans);
 
 @font-face {
     font-family: 'Facon';
     src: url('../fonts/Facon.ttf');
 }
 
-h1,h2,h3,h4,h5,h6,p,ul,li {
-  margin: 0;
-  padding: 0;
+h1,h2,h3,h4,h5,h6 {
+  text-transform: uppercase;
+  font-family: 'Work Sans', serif;
+  font-weight: 700;
 }
 
 $black: #101010;
+$light-grey: #f5f5f5;
 $grey: #1F1E20;
 $white: #fff;
+$yellow: #f5d271;
 
 body {
   font-family: 'Open Sans', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  .section {
+    overflow: hidden;
+  }
+
+  .animate-left, .animate-up, .animate-right {
+    opacity: 1;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  hr {
+    width: 100px;
+    height: 1px;
+    margin-left: 0;
+    background-color: $white;
+    border: none;
+    margin-bottom: 24px;
+    margin-top: 0;
+
+    &.black {
+      background-color: $black;
+    }
+  }
 
   #navigation {
     width: 100%;
@@ -37,11 +65,14 @@ body {
     h1 {
       font-size: 24px;
       color: $white;
+      margin-bottom: 0;
     }
 
     ul {
       list-style-type: none;
       text-align: right;
+      margin-bottom: 0;
+      margin-left: 0;
 
       li {
         display: inline-block;
@@ -49,32 +80,75 @@ body {
 
         a {
           color: $white;
+          font-family: 'Work Sans', serif;
+          text-transform: uppercase;
+
+          &:hover {
+            color: $yellow;
+          }
         }
       }
     }
   }
 
   #header {
-    margin-top: 77px;
+    margin-top: 76px;
     display: block;
-    padding: 80px 0;
-    background-color: $black;
-    min-height: 600px;
+    padding: 40px 0;
+    min-height: calc(100vh - 76px);
+    position: relative;
+    overflow: hidden;
+
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
 
     .header-content {
+      position: absolute;
+      top: (calc(100vh / 3));
+      z-index: 2;
+      max-width: 800px;
+      text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+
       h1 {
-        color: $white;
+        color: $yellow;
+        font-family: 'Work Sans', serif;
       }
 
       h3 {
         color: $white;
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 300;
+      }
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      padding: 16px;
+      box-sizing: border-box;
+
+      i {
+        color: $white;
+        font-size: 24px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
       }
     }
   }
 
   #slider {
     display: block;
-    padding: 80px 0px;
+    padding: 40px 0px;
     background-color: $grey;
 
     h2 {
@@ -84,13 +158,15 @@ body {
     #album-slider {
       max-width: 100%;
       height: auto;
-      min-height: 600px;
+      min-height: calc(560px + 40px);
+      padding-bottom: 60px;
 
       .slick-arrow {
         position: absolute;
-        bottom: 150px;
+        bottom: 0;
         z-index: 2;
         color: $white;
+        font-size: 24px;
 
         &.slick-prev {
           left: 45%;
@@ -104,16 +180,17 @@ body {
       }
 
       .slick-slide {
-        max-width: 400px;
-        height: 400px;
-        margin: 100px 60px 0 0;
+        width: 320px;
+        height: 440px;
+        margin: 50px 60px 0 0;
         font-size: 58px;
         transition: all .3s;
         position: relative;
 
         &.slick-active {
           margin-top: 0;
-          height: 600px;
+          width: 380px;
+          height: 540px;
           transition: all .3s;
 
           .slider-content {
@@ -140,6 +217,7 @@ body {
           transform: translate(-50%, -50%);
           color: $white;
           z-index: 2;
+          text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
 
           h3 {
             font-family: 'Facon', serif;
@@ -151,7 +229,7 @@ body {
           }
         }
 
-        .item {
+        .slider-item {
           display: block;
           margin: 0 auto;
           height: 100%;
@@ -168,13 +246,125 @@ body {
     }
   }
 
-  #about {
+  #videos {
     background-color: $white;
-    padding: 80px 0;
+    padding: 40px 0;
+
+    .video-item {
+      position: relative;
+      min-height: 200px;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  #about {
+    background-color: $yellow;
+    padding: 40px 0;
+
+    p {
+      font-size: 18px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin-left: 0;
+      margin-top: 24px;
+
+      li {
+        display: inline-block;
+        margin-right: 14px;
+
+        i {
+          font-size: 24px;
+        }
+      }
+    }
+
+    button {
+      box-sizing: border-box;
+      padding: 10px 20px;
+      background-color: transparent;
+      border: solid 2px #000;
+      text-transform: uppercase;
+
+      i {
+        margin-left: 10px;
+      }
+    }
 
     img {
-      width: 300px;
-      float: right;
+      width: 100%;
+    }
+  }
+
+  #quote {
+    background-color: $white;
+    padding: 40px 0;
+
+    span {
+      font-size: 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      text-transform: uppercase;
+      font-weight: 700;
+
+      span {
+        display: block;
+        text-align: right;
+        font-size: 16px;
+        font-family: 'Open Sans', serif;
+        font-weight: 400;
+      }
+    }
+  }
+
+  #contact {
+    background-color: $light-grey;
+    padding: 40px 0;
+
+    p {
+      font-size: 18px;
+    }
+
+    span {
+      display: block;
+      font-size: 18px;
+
+      i {
+        margin-right: 10px;
+        width: 22px;
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: solid 2px $black;
+      padding: 10px 14px;
+      box-sizing: border-box;
+      margin-top: 24px;
+      text-transform: uppercase;
+
+      i {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  #footer {
+    padding: 20px 0;
+    background-color: $black;
+
+    span {
+      color: $white;
+      font-size: 12px;
     }
   }
 }
